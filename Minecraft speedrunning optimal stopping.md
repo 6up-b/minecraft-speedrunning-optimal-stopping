@@ -67,3 +67,41 @@ Not really trained on a static labeled dataset. Data are the following:
 - Skill artifacts from code that ends up succeeding + natural language description
 Self verification from GPT4 produces the success/fail label for each attempted task with critique text. Environment feedback is produced during execution and is kind of used as a structured ish supervision for debugging. 
 
+[twitch chat downloader + twitch vod downloader](https://github.com/lay295/TwitchDownloader?tab=readme-ov-file)
+
+[minecraft speedrunning guide for 1.16.1 forsen](https://github.com/Metacor/Minecraft-Speedrun-Guide?tab=readme-ov-file)
+
+[forsen minecraft vods](https://www.youtube.com/watch?v=xNTWpdiyEpo&list=PLqK_XCyJ557rlSpCKAD7UmvgyR2IkCs1J)
+
+
+[slowrunning 23:38](https://www.youtube.com/watch?v=9VvhmZX_JgQ&list=PLqK_XCyJ557rlSpCKAD7UmvgyR2IkCs1J&index=200)
+## markers
+
+1. spawn in village
+2. search for lava lake or ruined portal
+3. enter nether
+4. find bastion
+5. trade gold to piglins for obsidian and epearls
+6. find fortress
+7. kill blaze for blaze rods
+8. exit nether
+9. enter stronghold (this is where they use the cool Ninjabrain triangulation method to find it)
+10. find portal room + enter the end
+11. kill the ender dragon
+
+## timestamps
+1. t_world_load (first controllable frame, run start)
+2. t_first_structure_seen (village/ruins/shipwreck)
+3. t_nether_enter
+4. t_bastion_seen
+5. t_first_piglin_barter (count of barters)
+6. t_fortress_seen
+7. t_blaze_rod_obtained (count)
+8. t_stronghold_enter
+9. t_end_enter
+10. t_dragon_death (run finished)
+
+t_world_load
+
+
+[[forsen vod screenshots for opencv]]
