@@ -1,2 +1,2 @@
 # minecraft-speedrunning-optimal-stopping
-speedruns as a multistafe stochastic proccess
+speedruns as a multistate stochastic proccess
