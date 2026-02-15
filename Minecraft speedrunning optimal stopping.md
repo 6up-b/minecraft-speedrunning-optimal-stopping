@@ -1,4 +1,9 @@
 
+## todo
+- fine tune ocr on minecraft text and numbers
+- try out template matching to count number of 
+- K
+
 Speedruns can be defined as a multi stage stochastic process.
 
 overworld --> nether --> fortress --> bastion trade --> stronghold --> end portal --> end fight
@@ -6,13 +11,37 @@ overworld --> nether --> fortress --> bastion trade --> stronghold --> end porta
 We learn the distribution of outcomes and conditional completion times from features we can derive from VODs.
 From this we can discover novel optimal reset rules and have a Voyager-like autonomous agent complete speedruns
 ## Feature derivation
+1. t_world_load (first controllable frame, run start)
+	1. compute perceptual hash similarity between frames  (may be easier than detecting 00:00:000)
+	2. or just use ocr 00:00:00xx with finetuned
+2. t_nether_enter
+	1. toast
+3. t_bastion_seen
+	1. toast
+4. t_first_piglin_nearby
+	1. subtitle
+5. t_10_epearls
+	1. template matching + hash similarity
+6. t_fortress_seen
+	1. toast
+7. t_first_blaze_nearby
+	1. subtitle
+8. t_6_blazerods
+	1. template matching + hash similarity
+9. t_stronghold_enter
+	1. toast
+10. t_end_enter
+	1. toast
+11. t_dragon_death (run finished)
+	1. toast
+12. t_death
+	1. template matching
 
-- Village time (maybe some kind of YOLO object detection)
-- Ruined portal time (also object detection)
-- Nether entry time (based on opencv template for purple pixels)
-- bastion type (Bill Tin)
-- first blaze count
-- first pearl trades
+
+crazy ideas:
+- run type (village, shipwreck)
+- bastion type detection (bill tin)
+- 
 
 ## Optimal stopping for resets
 
@@ -90,16 +119,7 @@ Self verification from GPT4 produces the success/fail label for each attempted t
 11. kill the ender dragon
 
 ## timestamps
-1. t_world_load (first controllable frame, run start)
-2. t_first_structure_seen (village/ruins/shipwreck)
-3. t_nether_enter
-4. t_bastion_seen
-5. t_first_piglin_barter (count of barters)
-6. t_fortress_seen
-7. t_blaze_rod_obtained (count)
-8. t_stronghold_enter
-9. t_end_enter
-10. t_dragon_death (run finished)
+
 
 t_world_load
 

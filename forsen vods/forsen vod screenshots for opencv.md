@@ -1,4 +1,22 @@
 
+Mile
+
+
+
+
+
+Let's track the timer as an image instead of text
+
+So before OCR 
+
+crop timer ROI
+compute perceptual hash similarity betwene frames
+if timer area suddenly changes (all that random bs with the seed selection) we flag it as a candidate reset window then run more high fps ocr there.
+
+
+
+![[Pasted image 20260213101706.png]]
+
 old forsen vod time format
 ![[Pasted image 20260211133235.png]]
 
