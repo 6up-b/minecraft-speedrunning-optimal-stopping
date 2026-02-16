@@ -1,0 +1,8 @@
+#dont upload all thevideos
+
+*.webm
+*.mp4
+
+#dont upload the images in timer chars
+
+data/timer_chars/
