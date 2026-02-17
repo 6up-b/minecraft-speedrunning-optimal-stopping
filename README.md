@@ -5,7 +5,7 @@ speedruns as a multistate stochastic proccess
 ## todo:
 
 <h4>getting a good dataset</h4>
-- timer
+- timer (go to vod_analysis/src/timer)
     - opencv + pytorch timer
     - segmentation + per char CNN 
     - small
@@ -29,4 +29,5 @@ note: think about how reset policy is fundamentally different from forced reset 
 - use forsen's runs. ocr milestones to estimate distributions of stages time to nether, time to bbastion, etc, and condditional success rates for transitions
 - partial trajectories P(reach next milestone), P(sub-T), expected remaining time
 - ((weird idea)) learn route policy from forsen like how long to search before giving up, how often to reset given certain evidence. imagine an xqc route policy agent versus a forsen route policy agent
+
 
