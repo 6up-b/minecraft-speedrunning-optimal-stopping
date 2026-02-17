@@ -5,7 +5,7 @@ speedruns as a multistate stochastic proccess
 ## todo:
 
 <h6>getting a good dataset</h6>
-- timer **((mostly)) DONE**
+- timer
     - opencv + pytorch timer
     - segmentation + per char CNN 
     - small
@@ -20,3 +20,4 @@ speedruns as a multistate stochastic proccess
 
 
 note: think about how reset policy is fundamentally different from forced reset (death)
+
