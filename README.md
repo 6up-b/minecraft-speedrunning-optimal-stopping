@@ -1,6 +1,11 @@
 # minecraft-speedrunning-optimal-stopping
 speedruns as a multistate stochastic proccess
 
+create your conda dev environment (the yml is in the vod_analysis folder)
+```
+conda env create -f environment.yml
+
+```
 
 ## todo:
 
