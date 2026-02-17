@@ -1,0 +1,60 @@
+{
+  "timer_roi_norm": {
+    "x0": 0.884375,
+    "y0": 0.074,
+    "x1": 0.984375,
+    "y1": 0.10833333333333334
+  },
+  "frame_used": 109814,
+  "digit_bounds_x_norm_within_timer": [
+    0.01,
+    0.1484375,
+    0.29296875,
+    0.4296875,
+    0.60975,
+    0.7265625,
+    0.8515625,
+    0.979999
+  ],
+  "separators_x_norm_within_timer": {
+    "colon": [
+      0.28125,
+      0.3090625
+    ],
+    "dot": [
+      0.56640625,
+      0.58984375
+    ]
+  },
+  "digit_slots": [
+    {
+      "name": "m_tens",
+      "i": 0
+    },
+    {
+      "name": "m_ones",
+      "i": 1
+    },
+    {
+      "name": "s_tens",
+      "i": 2
+    },
+    {
+      "name": "s_ones",
+      "i": 3
+    },
+    {
+      "name": "ms_hund",
+      "i": 4
+    },
+    {
+      "name": "ms_tens",
+      "i": 5
+    },
+    {
+      "name": "ms_ones",
+      "i": 6
+    }
+  ],
+  "notes": "Digits use bounds[i]..bounds[i+1] within timer ROI. Separators define bands to EXCLUDE from adjacent digit crops."
+}
