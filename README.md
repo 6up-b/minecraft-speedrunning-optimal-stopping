@@ -7,16 +7,28 @@ conda env create -f environment.yml
 
 ```
 
+
 ## todo:
 
 <h4>getting a good dataset</h4>
 - timer (go to vod_analysis/src/timer)
-    - opencv + pytorch timer
-    - segmentation + per char CNN 
-    - small
     - important! trained on only 1 vod. bounding box i think differs across vods. So probably have to manually edit or make some high iq YOLO model to draw the bounding box on the timer instead of it being hardcoded in configs/roi.json + timer_digit_bounds.json
-    - val_acc of around 99% for the CNN. surely not overfitting
-
+		- **timer pipeline:**
+			1. check top right corner (top 30% xy)
+			2. template match "IGT:"
+			3. create bounding box for digits relative to position of IGT: (percentage)
+		- **toast pipeline**
+			1. check bottom 20% of screen (20% down, middle margin 15%)
+			2. look for ui template match (inventory box)
+			3. similarly use size of ui template match to find relative position of toast text
+			4. green text color mask then fine tuned OCR
+				1. fine tune OCR on minecraft font
+		- **inventory pipeline**
+			1. start from ui template match
+			2. check for epearl blaze rod template match
+		- **every time digit confidence drops**
+			- rerun full position pipelines for timer, toast and inventory
+			- f
 - toast:
     - fixed ROI + OCR
 - subtitle:

@@ -6,3 +6,7 @@
 #dont upload the images in timer chars
 
 data/
+
+#my yt dlp cookies
+
+cookies.txt

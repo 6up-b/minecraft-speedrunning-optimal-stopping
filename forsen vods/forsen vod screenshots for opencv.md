@@ -78,7 +78,7 @@ also known as Into Fire
 
 enter stronghold
 ![[Pasted image 20260211143547.png]]
-![[Pasted image 20260211143607.png]]
+
 ![[Pasted image 20260211143555.png]]
 also known as Eye Spy
 
