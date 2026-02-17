@@ -183,12 +183,12 @@ def main():
     show_grid = True
 
     window = "calibrate_timer_digits"
-    help_lines = [
-        "Click/drag any line (digit boundary b0..b7, colon0/colon1, dot0/dot1).",
-        "TAB: next line   G: grid   R: reset   N: new random frame",
-        "S: save config   Q/ESC: quit",
-        "Goal: separators are tight bands around ':' and '.' (exclude from adjacent digits).",
-    ]
+    # help_lines = [
+    #     "Click/drag any line (digit boundary b0..b7, colon0/colon1, dot0/dot1).",
+    #     "TAB: next line   G: grid   R: reset   N: new random frame",
+    #     "S: save config   Q/ESC: quit",
+    #     "Goal: separators are tight bands around ':' and '.' (exclude from adjacent digits).",
+    # ]
 
     def all_keys():
         keys = [f"b{i}" for i in range(len(digit_bounds))]
@@ -268,9 +268,9 @@ def main():
         vis = draw_overlay(timer_big, digit_bounds, seps, selected, show_grid=show_grid)
 
         y = 18
-        for line in help_lines:
-            cv2.putText(vis, line, (8, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1, cv2.LINE_AA)
-            y += 18
+        # for line in help_lines:
+        #     cv2.putText(vis, line, (8, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1, cv2.LINE_AA)
+        #     y += 18
 
         cv2.imshow(window, vis)
         key = cv2.waitKey(16) & 0xFFFF
