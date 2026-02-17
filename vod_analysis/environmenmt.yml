@@ -1,0 +1,7 @@
+name: forsen
+channels:
+  - defaults
+dependencies:
+  - pandas
+  - numpy
+prefix: C:\Users\banan\anaconda3\envs\forsen
