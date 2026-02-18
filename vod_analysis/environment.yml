@@ -4,4 +4,5 @@ channels:
 dependencies:
   - pandas
   - numpy
+  - matplotlib
 prefix: C:\Users\banan\anaconda3\envs\forsen

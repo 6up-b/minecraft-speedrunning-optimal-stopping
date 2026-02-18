@@ -6,7 +6,20 @@ from datetime import datetime, timedelta
 
 VALENCE_DICT = {
     "omegaLUL": -1,
-    "forsenE": 1
+    "forsenE": 1,
+    "forsenRNG": 0.5,
+    "sadE": -0.5,
+    "reset": -1,
+    "RESET": -1,
+    "monkaS": -0.25,
+    "DEAD": -1,
+    "Pepepains": -1,
+    "GOLDEN": 0.5,
+    "forsenBlunder": -1,
+    "PogChamp": 0.75,
+    "PogU": 0.75,
+    "PagMan": 0.5,
+    "ZULUL": -0.5
 }
 
 
@@ -47,15 +60,15 @@ def chat_analysis(chat_df, time, time_delta):
     by_user_time_df = time_filtered_df.groupby('User')['Message'].sum()
     user_top_tokens = by_user_time_df.apply(get_top_3_tokens)
     valence_scores = user_top_tokens.apply(get_user_valence)
-    average_valence = valence_scores.sum() / len(user_top_tokens)
-    return average_valence
+    #average_valence = valence_scores.sum() / len(user_top_tokens)
+    return valence_scores.sum() / len(user_top_tokens) if len(user_top_tokens) > 0 else 0
 
 
-chat_df = read_input("./example.txt")
-time_str = "3:28:46"
-t = datetime.strptime(time_str, "%H:%M:%S")
-dt = timedelta(hours=1)
+# chat_df = read_input("./example.txt")
+# time_str = "3:28:46"
+# t = datetime.strptime(time_str, "%H:%M:%S")
+# dt = timedelta(hours=1)
 
-print(chat_analysis(chat_df, t, dt))
+# print(chat_analysis(chat_df, t, dt))
 
 
