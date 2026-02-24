@@ -6,8 +6,14 @@ create your conda dev environment (the yml is in the vod_analysis folder)
 conda env create -f environment.yml
 
 ```
+surya installation
+```
+pip install -e extra_modules/surya
 
+```
 
+![[Pasted image 20260223163839.png]]
+![[Pasted image 20260223163905.png]]
 ## todo:
 
 #### getting a good dataset
@@ -40,6 +46,8 @@ conda env create -f environment.yml
 - make final test pipeline script that takes in vod and draws roi, inferences and plays back at 1-2 fps with j/l to jump frames, log output to json
 - after pipeline is finished, need to manually check over some long vod (not seen before val) to see if roi are being plotted correctly, inferences are correct, everything is being logged in a useful way for analysis
 
+
+toast template match should be rgb of hearts
 
 
 note: think about how reset policy is fundamentally different from forced reset (death)

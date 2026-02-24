@@ -35,8 +35,8 @@ def generate_ocr_sample(text, font_path, font_size=40, img_size=(300, 80)):
     return Image.fromarray(noisy_data)
 
 # --- Usage Example ---
-my_text = "SYNTH-OCR-2026"
+my_text = "[Diamonds!]"
 # Replace with a path to a font on your system (e.g., Arial.ttf)
-sample_img = generate_ocr_sample(my_text, "arial.ttf")
+sample_img = generate_ocr_sample(my_text, "C:/Users/banan/AppData/Local/Microsoft/Windows/Fonts/seven.ttf")
 sample_img.save("synthetic_data.png")
 sample_img.show()

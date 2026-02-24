@@ -39,11 +39,23 @@ nether entry
 ![[Pasted image 20260211141854.png]]
 ![[Pasted image 20260211142843.png]]
 ![[Pasted image 20260211142906.png]]
-![[Pasted image 20260211143110.png]]
+C
+![[Pasted image 20260223174631.png]]
+![[Pasted image 20260223174801.png]]
+We n![[Pasted image 20260223174934.png]]eed to go deeper
+![[Pasted image 20260223174910.png]]
+![[Pasted image 20260223174942.png]]
+![[Pasted image 20260223175019.png]]
+![[Pasted image 20260223175152.png]]
+![[Pasted image 20260223175202.png]]
+![[Pasted image 20260223175229.png]]
+![[Pasted image 20260223175246.png]]
 
-We need to go deeper
+![[Pasted image 20260223175447.png]]
+ 
 
 
+![[Pasted image 20260223175432.png]]
 bastion
 
 ![[Pasted image 20260211135038.png]]![[Pasted image 20260211135225.png]]
@@ -53,9 +65,12 @@ Those Were the Days
 ![[Pasted image 20260211142949.png]]
 ![[Pasted image 20260211135240.png]]
 
-
-
-
+![[Pasted image 20260223175049.png]]
+![[Pasted image 20260223175113.png]]
+![[Pasted image 20260223175312.png]]
+![[Pasted image 20260223175326.png]]
+![[Pasted image 20260223175340.png]]
+![[Pasted image 20260223175354.png]]
 skip part 245 and 246
 start from part 247 for using modern RTA IGT run tracker
 

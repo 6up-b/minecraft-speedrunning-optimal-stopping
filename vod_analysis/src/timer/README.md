@@ -9,6 +9,13 @@ xx:yy.zzz
 
 So instead of runing general ocr on the whole string, we detect the timer ROI, split into fixed digit slots, run CNN on each digit, and reconstruct the formatted string.
 
+idea:
+instead of greedy argmax per digit, use top k logits per digit and choose best valid time under constraints
+For example, for each digit slot i, get top 3 candidates with log prob. then enumerate combinations but only keep valid ones such that digit2 is less than digit 5.
+pick max total logprob
+This inbuilt sanity check will probably make the errors super low
+
+
 ## model.py
 
 small CNN for 32x32 digits

@@ -1,14 +1,24 @@
 import cv2
 import numpy as np
 import json
+import argparse
 
-with open('hsv_config.json', 'r') as f:
+ap = argparse.ArgumentParser()
+ap.add_argument("--input", required=False,
+                    help="Input image, directory, or glob (e.g. img.png OR images/ OR images/*.png)")
+ap.add_argument("--output", required=False,
+                    help="Output directory (for multiple images) or file path (for single image)")
+ap.add_argument("--config", default="../configs/hsv_config.json",
+                    help="Path to hsv_config.json")
+
+args = ap.parse_args()
+with open(args.config, 'r') as f:
     config = json.load(f)
 def nothing(x):
     pass
 
-img = cv2.imread('3.png')
-img = cv2.resize(img, (0,0), fx=3, fy=3) 
+img = cv2.imread(args.input)
+#img = cv2.resize(img, (0,0), fx=3, fy=3) 
 
 cv2.namedWindow('green filter params')
 lower_green = np.array(config['lower_green'])
