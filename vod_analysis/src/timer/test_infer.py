@@ -2,8 +2,8 @@ import cv2
 import torch
 import random
 import argparse
-from model import TinyCharCNN
-from infer import load_timer_layout, infer_timer
+from src.timer.model import TinyCharCNN
+from src.timer.infer import load_timer_layout, infer_timer
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -15,7 +15,7 @@ args = ap.parse_args()
 
 
 model = TinyCharCNN(num_classes=10, in_channels=3)
-model.load_state_dict(torch.load("timer_model.pth", map_location=device))
+model.load_state_dict_compat(torch.load("timer_model.pth", map_location=device))
 model.eval()
 cap = cv2.VideoCapture(args.video)
 if not cap.isOpened():

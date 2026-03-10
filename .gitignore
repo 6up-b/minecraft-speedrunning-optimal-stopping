@@ -2,6 +2,7 @@
 
 *.webm
 *.mp4
+*.part
 
 #dont upload the images in timer chars
 
@@ -10,3 +11,7 @@ data/
 #my yt dlp cookies
 
 cookies.txt
+
+CLAUDE.md
+
+extra_modules/

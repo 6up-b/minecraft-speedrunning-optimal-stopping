@@ -1,4 +1,17 @@
 
+****
+**workflow to retrain**
+  cd vod_analysis
+
+  # 1. Label digits from VODs
+  python scripts/label_timer_digits.py --video input_lowres.mp4 --target 100
+  python scripts/label_timer_digits.py --video part538.mp4 --target 100
+
+  # 2. Train with augmentation
+  python -m src.timer.train_timer_cnn --augment --epochs 40 --dropout 0.1
+
+  # 3. Test
+  python src/timer/test_infer.py --video input_lowres.mp4
 ## todo
 - fine tune ocr on minecraft text and numbers
 - try out template matching to count number of 

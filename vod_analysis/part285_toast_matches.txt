@@ -1,0 +1,7 @@
+# Toast template matches for part285.mp4
+# template=templates/we_need_to_go_template.png  min_score=0.55
+# fps=60.0  total_frames=433444
+# 0 matches found
+
+timestamp           frame    score
+---------------- -------- --------

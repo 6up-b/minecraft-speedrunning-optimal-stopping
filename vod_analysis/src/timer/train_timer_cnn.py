@@ -1,13 +1,14 @@
 import argparse
 from pathlib import Path
 import numpy as np
+import cv2
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
 from src.timer.model import TinyCharCNN
-from src.timer.datasets import TimerEdgeDataset  # 3-channel dataset
+from src.timer.datasets import TimerEdgeDataset, TimerEdgeAugDataset
 
 
 CLASS_NAMES = [str(i) for i in range(10)]
@@ -31,11 +32,35 @@ def confusion_matrix(y_true, y_pred, n):
     return cm
 
 
+def save_misclassified(val_ds, model, device, out_dir: Path, max_per_class=20):
+    """Save misclassified validation images for inspection."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    model.eval()
+    counts = {}
+
+    with torch.no_grad():
+        for i in range(len(val_ds)):
+            x, y_true = val_ds[i]
+            x_batch = x.unsqueeze(0).to(device)
+            logits = model(x_batch)
+            y_pred = logits.argmax(1).item()
+
+            if y_pred != y_true:
+                key = f"true{y_true}_pred{y_pred}"
+                counts[key] = counts.get(key, 0) + 1
+                if counts[key] <= max_per_class:
+                    path = val_ds.samples[i][0]
+                    img = cv2.imread(path, cv2.IMREAD_COLOR)
+                    if img is not None:
+                        fname = f"{key}_{counts[key]}.png"
+                        cv2.imwrite(str(out_dir / fname), img)
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data_root", default="data/timer_digits_raw", help="Root with train/ and val/ (RGB crops)")
+    ap.add_argument("--data_root", default="data/timer_digits_v2", help="Root with train/ and val/ (RGB crops)")
     ap.add_argument("--out", default="timer_model.pth", help="Where to save best weights")
-    ap.add_argument("--epochs", type=int, default=20)
+    ap.add_argument("--epochs", type=int, default=40)
     ap.add_argument("--batch", type=int, default=256)
     ap.add_argument("--lr", type=float, default=1e-3)
     ap.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
@@ -43,6 +68,13 @@ def main():
 
     # edge dataset options
     ap.add_argument("--yellow_thr", type=int, default=40, help="Threshold for yellow_score_mask")
+
+    # new options
+    ap.add_argument("--augment", action=argparse.BooleanOptionalAction, default=True,
+                    help="Use augmented dataset for training (default: True)")
+    ap.add_argument("--dropout", type=float, default=0.1, help="Dropout2d probability after 2nd maxpool")
+    ap.add_argument("--save_misclassified", action=argparse.BooleanOptionalAction, default=True,
+                    help="Save misclassified val images to debug/misclassified/")
 
     args = ap.parse_args()
 
@@ -53,8 +85,16 @@ def main():
     if not train_dir.exists() or not val_dir.exists():
         raise FileNotFoundError("Expected train/ and val/ under data_root")
 
-    train_ds = TimerEdgeDataset(str(train_dir), yellow_thr=args.yellow_thr)
-    val_ds   = TimerEdgeDataset(str(val_dir),   yellow_thr=args.yellow_thr)
+    # Training: augmented or plain
+    if args.augment:
+        print("Using TimerEdgeAugDataset (with augmentation) for training")
+        train_ds = TimerEdgeAugDataset(str(train_dir), yellow_thr=args.yellow_thr)
+    else:
+        print("Using TimerEdgeDataset (no augmentation) for training")
+        train_ds = TimerEdgeDataset(str(train_dir), yellow_thr=args.yellow_thr)
+
+    # Validation: always plain (no augmentation)
+    val_ds = TimerEdgeDataset(str(val_dir), yellow_thr=args.yellow_thr)
 
     print("Train class_to_idx:", train_ds.class_to_idx)
     print("Val   class_to_idx:", val_ds.class_to_idx)
@@ -69,6 +109,17 @@ def main():
         raise RuntimeError(f"Expected digit-only folders 0..9 with mapping {expected}, got {train_ds.class_to_idx}")
 
     n_classes = len(train_ds.classes)  # should be 10
+
+    # Print class distribution
+    train_counts = np.zeros(n_classes, dtype=np.int64)
+    for _, y in train_ds.samples:
+        train_counts[y] += 1
+    val_counts = np.zeros(n_classes, dtype=np.int64)
+    for _, y in val_ds.samples:
+        val_counts[y] += 1
+    print(f"Train samples: {len(train_ds)} | Val samples: {len(val_ds)}")
+    print(f"Train per class: {dict(zip(CLASS_NAMES, train_counts.tolist()))}")
+    print(f"Val   per class: {dict(zip(CLASS_NAMES, val_counts.tolist()))}")
 
     train_loader = DataLoader(
         train_ds,
@@ -87,8 +138,8 @@ def main():
         persistent_workers=(args.num_workers > 0),
     )
 
-    # NEW: 3-channel model
-    model = TinyCharCNN(num_classes=n_classes, in_channels=3).to(args.device)
+    model = TinyCharCNN(num_classes=n_classes, in_channels=3, dropout=args.dropout).to(args.device)
+    print(f"Model: TinyCharCNN(dropout={args.dropout})")
 
     class_weights = build_class_weights(train_ds).to(args.device)
     loss_fn = nn.CrossEntropyLoss(weight=class_weights)
@@ -169,7 +220,14 @@ def main():
         if val_acc > best_val:
             best_val = val_acc
             torch.save(model.state_dict(), args.out)
-            print(f"✅ Saved best model to {args.out} (val_acc={best_val:.4f})")
+            print(f"  Saved best model to {args.out} (val_acc={best_val:.4f})")
+
+    # Save misclassified images from best model
+    if args.save_misclassified and best_val < 1.0:
+        print("\nSaving misclassified validation images...")
+        model.load_state_dict(torch.load(args.out, map_location=args.device))
+        save_misclassified(val_ds, model, args.device, Path("debug/misclassified"))
+        print("Saved to debug/misclassified/")
 
     print(f"\nDone. Best val_acc={best_val:.4f}. Model at: {args.out}")
 

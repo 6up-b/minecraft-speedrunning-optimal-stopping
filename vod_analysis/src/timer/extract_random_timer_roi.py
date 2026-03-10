@@ -1,53 +1,40 @@
+"""
+Extract the timer ROI from a random (or specified) frame using anchor-based
+layout from configs/timer_layout_from_anchor.json.
+
+Usage (from vod_analysis/):
+    python -m src.timer.extract_random_timer_roi --video part538.mp4
+    python -m src.timer.extract_random_timer_roi --video part538.mp4 --frame 73740
+"""
 import argparse
-import json
 import random
 from pathlib import Path
 
 import cv2
+import numpy as np
 
-
-def clamp01(x: float) -> float:
-    return max(0.0, min(1.0, x))
-
-
-def load_timer_roi(roi_json_path: Path):
-    cfg = json.loads(roi_json_path.read_text(encoding="utf-8"))
-    t = cfg["timer"]
-    x0 = clamp01(float(t["x0"]))
-    y0 = clamp01(float(t["y0"]))
-    x1 = clamp01(float(t["x1"]))
-    y1 = clamp01(float(t["y1"]))
-    if x1 <= x0 or y1 <= y0:
-        raise ValueError("Invalid timer ROI in JSON (x1<=x0 or y1<=y0)")
-    return x0, y0, x1, y1
-
-
-def crop_norm(frame_bgr, x0, y0, x1, y1):
-    h, w = frame_bgr.shape[:2]
-    xa = int(x0 * w)
-    ya = int(y0 * h)
-    xb = int(x1 * w)
-    yb = int(y1 * h)
-    xa = max(0, min(w - 1, xa))
-    xb = max(0, min(w, xb))
-    ya = max(0, min(h - 1, ya))
-    yb = max(0, min(h, yb))
-    if xb <= xa or yb <= ya:
-        raise ValueError("Crop collapsed; check ROI coords vs frame size")
-    return frame_bgr[ya:yb, xa:xb].copy(), (xa, ya, xb - xa, yb - ya)
+from .infer import load_timer_layout, _match_anchor_multiscale, _timer_xyxy_from_anchor, _crop_xyxy
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--video", default="input.mp4", help="Input video path")
-    ap.add_argument("--roi", default="configs/roi.json", help="ROI json path (expects cfg['timer'])")
+    ap.add_argument("--layout", default="configs/timer_layout_from_anchor.json",
+                    help="Anchor-based timer layout config")
     ap.add_argument("--out", default="test_timer.png", help="Output image path")
-    ap.add_argument("--seed", type=int, default=None, help="Optional RNG seed for reproducibility")
-    ap.add_argument("--frame", type=int, default=None, help="Optional absolute frame index (overrides random)")
+    ap.add_argument("--seed", type=int, default=None, help="Optional RNG seed")
+    ap.add_argument("--frame", type=int, default=None, help="Optional frame index")
     args = ap.parse_args()
 
     if args.seed is not None:
         random.seed(args.seed)
+
+    layout = load_timer_layout(args.layout)
+
+    # Load anchor template
+    anchor_tmpl = cv2.imread(layout.anchor_template_path, cv2.IMREAD_COLOR)
+    if anchor_tmpl is None:
+        raise FileNotFoundError(f"Anchor template not found: {layout.anchor_template_path}")
 
     cap = cv2.VideoCapture(args.video)
     if not cap.isOpened():
@@ -58,32 +45,47 @@ def main():
 
     if total <= 0:
         cap.release()
-        raise RuntimeError("Could not read frame count (maybe codec issue).")
+        raise RuntimeError("Could not read frame count.")
 
-    # Choose frame
     frame_idx = args.frame if args.frame is not None else random.randrange(0, total)
     frame_idx = max(0, min(total - 1, frame_idx))
 
-    # Seek + read
     cap.set(cv2.CAP_PROP_POS_FRAMES, frame_idx)
     ok, frame = cap.read()
     cap.release()
     if not ok or frame is None:
-        raise RuntimeError(f"Failed to read frame {frame_idx} from {args.video}")
+        raise RuntimeError(f"Failed to read frame {frame_idx}")
 
-    # Load ROI + crop
-    x0, y0, x1, y1 = load_timer_roi(Path(args.roi))
-    crop, bbox = crop_norm(frame, x0, y0, x1, y1)
+    # Find anchor
+    found = _match_anchor_multiscale(
+        frame, anchor_tmpl,
+        top_frac=layout.match_top_frac,
+        right_frac=layout.match_right_frac,
+    )
+    if found is None:
+        raise RuntimeError(f"Anchor not found in frame {frame_idx}")
+
+    anchor_score, anchor_xywh = found
+    print(f"Anchor score: {anchor_score:.4f}  bbox: {anchor_xywh}")
+
+    if anchor_score < layout.min_score:
+        print(f"WARNING: anchor score {anchor_score:.4f} < min_score {layout.min_score}")
+
+    # Derive timer ROI
+    timer_xyxy = _timer_xyxy_from_anchor(anchor_xywh, layout)
+    timer_crop = _crop_xyxy(frame, timer_xyxy)
+    if timer_crop is None:
+        raise RuntimeError(f"Timer ROI crop failed: {timer_xyxy}")
 
     # Save
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    cv2.imwrite(str(out_path), crop)
+    cv2.imwrite(str(out_path), timer_crop)
 
     t_video = frame_idx / fps if fps > 0 else None
     print(f"Saved: {out_path}")
     print(f"Frame: {frame_idx}/{total-1}  fps={fps:.3f}  t_video={t_video}")
-    print(f"Timer ROI bbox (px): x={bbox[0]} y={bbox[1]} w={bbox[2]} h={bbox[3]}")
+    print(f"Timer ROI (px): x0={timer_xyxy[0]} y0={timer_xyxy[1]} x1={timer_xyxy[2]} y1={timer_xyxy[3]}")
 
 
 if __name__ == "__main__":
