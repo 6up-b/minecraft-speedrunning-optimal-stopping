@@ -28,7 +28,7 @@ from src.toast.template_match import (
 )
 
 # Scales tightened from (0.8..1.2) to (0.95..1.05) since we confirmed
-# 1.0 works on 1080p VODs. Saves ~40% of matchTemplate calls.
+# 1.0 works on 1080p VODs. 
 MATCH_SCALES = (0.95, 1.00, 1.05)
 
 

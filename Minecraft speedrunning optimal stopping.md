@@ -1,4 +1,53 @@
 
+
+
+  Step 1: Extracted shared geometry (src/timer/geometry.py) — new file
+
+  - Extracted clamp, clamp01, match_anchor_multiscale, timer_xyxy_from_anchor, crop_xyxy, digit_boxes_excluding_seps, letterbox, prep_digit_for_model, TimerLayout,
+  load_timer_layout from infer.py
+  - Updated infer.py to import from geometry.py + kept _-prefixed aliases for backward compat with extract_random_timer_roi.py and test_random_timer_digits.py
+
+  Step 2: Manual labeling tool (scripts/label_timer_digits.py) — new file
+
+  - Pre-extracts timer ROIs from random video frames using anchor-based layout
+  - Shows upscaled timer ROI, user types 7 digits + Enter
+  - Supports s=skip, q=quit, backspace, Esc to cancel
+  - Saves letterboxed 32x32 BGR crops to data/timer_digits_v2/{train,val}/{0..9}/
+  - Tracks class counts, auto-splits train/val
+
+  Step 3: Google Vision dataset builder (src/timer/build_timer_dataset_from_anchor.py) — new file
+
+  - Same geometry as labeling tool, but uses Google Vision API for automatic labeling
+  - Supports --videos for multi-VOD extraction
+
+  Step 4: Augmented dataset class (src/timer/datasets.py) — modified
+
+  - Added TimerEdgeAugDataset with 6 augmentations on BGR before 3-channel preprocessing:
+  scale jitter, translation, brightness/contrast, gaussian noise, rotation, JPEG artifacts
+  - Added shared _bgr_to_3ch and _augment_bgr helpers
+
+  Step 5: Model + training updates
+
+  - model.py: Added Dropout2d(p) always present (p=0 is no-op), plus load_state_dict_compat() for old checkpoint remapping
+  - train_timer_cnn.py: Added --augment (default True), --dropout (default 0.1), --save_misclassified, default --data_root data/timer_digits_v2, default --epochs 40,
+  prints class distribution
+  - pipeline.py and test_infer.py: Updated to use load_state_dict_compat()
+
+  Workflow to retrain:
+
+  cd vod_analysis
+
+  # 1. Label digits from VODs
+  python scripts/label_timer_digits.py --video input_lowres.mp4 --target 100
+  python scripts/label_timer_digits.py --video part538.mp4 --target 100
+
+  # 2. Train with augmentation
+  python -m src.timer.train_timer_cnn --augment --epochs 40 --dropout 0.1
+
+  # 3. Test
+  python src/timer/test_infer.py --video input_lowres.mp4
+
+
 ****
 **workflow to retrain**
   cd vod_analysis

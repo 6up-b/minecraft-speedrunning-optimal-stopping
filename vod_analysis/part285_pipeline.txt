@@ -1,0 +1,8 @@
+# Pipeline output for part285.mp4
+# toast_templates=templates/toast_templates  min_score=0.55
+# timer_model=timer_model.pth  timer_layout=configs/timer_layout_from_anchor.json
+# fps=60.0  total_frames=433444  duration=7224s
+# 0 events
+
+timestamp           frame   timer_text timer_conf template_name                  template_score
+-----------------------------------------------------------------------------------------------
