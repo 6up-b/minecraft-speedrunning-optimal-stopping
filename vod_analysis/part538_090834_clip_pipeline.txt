@@ -1,0 +1,6 @@
+# Pipeline output for debug/part538_090834_clip.mp4
+# segmentation_fps=0.5  toast_search_fps=5.0
+# min_score=0.55  near_zero_max_seconds=10.0
+# fps=60.0  total_frames=1800  duration=30s
+# runs=0  events=0
+

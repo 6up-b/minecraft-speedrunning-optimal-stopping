@@ -1,10 +1,29 @@
+import json
+from pathlib import Path
+from typing import Dict, Optional, Tuple
+
 import cv2
 import numpy as np
-from typing import Optional, Tuple, Dict
 
-def green_text_crop(roi_bgr: np.ndarray,
-                    pad: int = 6,
-                    min_area: int = 150) -> Tuple[Optional[np.ndarray], Dict]:
+
+DEFAULT_LOWER_GREEN = np.array([35, 80, 80], dtype=np.uint8)
+DEFAULT_UPPER_GREEN = np.array([90, 255, 255], dtype=np.uint8)
+
+
+def load_hsv_config(path: str) -> Tuple[np.ndarray, np.ndarray]:
+    cfg = json.loads(Path(path).read_text(encoding="utf-8"))
+    lower = np.array(cfg["lower_green"], dtype=np.uint8)
+    upper = np.array(cfg["upper_green"], dtype=np.uint8)
+    return lower, upper
+
+
+def green_text_crop(
+    roi_bgr: np.ndarray,
+    pad: int = 6,
+    min_area: int = 150,
+    lower_green: Optional[np.ndarray] = None,
+    upper_green: Optional[np.ndarray] = None,
+) -> Tuple[Optional[np.ndarray], Dict]:
     """
     Returns (cropped_bgr_or_none, meta)
     - Crops ROI to bounding box of green text
@@ -14,9 +33,8 @@ def green_text_crop(roi_bgr: np.ndarray,
         return None, {"reason": "empty"}
 
     hsv = cv2.cvtColor(roi_bgr, cv2.COLOR_BGR2HSV)
-
-    lower_g = np.array([35, 80, 80], dtype=np.uint8)
-    upper_g = np.array([90, 255, 255], dtype=np.uint8)
+    lower_g = DEFAULT_LOWER_GREEN if lower_green is None else lower_green
+    upper_g = DEFAULT_UPPER_GREEN if upper_green is None else upper_green
     mask = cv2.inRange(hsv, lower_g, upper_g)
 
     # Clean up: fill small gaps in letters
@@ -55,4 +73,5 @@ def green_text_crop(roi_bgr: np.ndarray,
     return crop, {
         "bbox": (int(x0), int(y0), int(x1 - x0), int(y1 - y0)),
         "green_area": int(total_area),
+        "mask_pixels": int(np.count_nonzero(mask)),
     }

@@ -1,0 +1,161 @@
+# Pipeline output for part541.mp4
+# segmentation_fps=0.5  toast_search_fps=5.0
+# min_score=0.55  near_zero_max_seconds=10.0
+# fps=60.0  total_frames=2203575  duration=36726s
+# runs=367  runs_with_toasts=48  events=59
+
+run 19: start=00:17:52.000 frame=64320  end=00:23:17.983 frame=83879
+  toast1: timestamp=00:21:53.883 frame=78833  timer=03:49.200  timer_conf=0.6123  toast_conf=0.9777  template=toast1  timer_source=anchor_refresh
+
+run 21: start=00:24:40.000 frame=88800  end=00:32:33.983 frame=117239
+  toast1: timestamp=00:27:18.367 frame=98302  timer=02:33.149  timer_conf=0.7118  toast_conf=0.9761  template=toast1  timer_source=anchor_refresh
+
+run 35: start=00:45:02.000 frame=162120  end=00:50:39.983 frame=182399
+  toast1: timestamp=00:48:03.767 frame=173026  timer=02:49.850  timer_conf=0.6327  toast_conf=0.9763  template=toast1  timer_source=anchor_refresh
+
+run 48: start=00:58:36.000 frame=210960  end=01:10:13.983 frame=252839
+  toast1: timestamp=01:02:20.883 frame=224453  timer=03:48.345  timer_conf=0.6609  toast_conf=0.9776  template=toast1  timer_source=anchor_refresh
+  toast2: timestamp=01:04:47.867 frame=233272  timer=05:51.992  timer_conf=0.6237  toast_conf=0.9836  template=toast2  timer_source=anchor_refresh
+
+run 60: start=01:14:44.000 frame=269040  end=01:22:37.983 frame=297479
+  toast1: timestamp=01:17:55.517 frame=280531  timer=03:16.386  timer_conf=0.6946  toast_conf=0.9774  template=toast1  timer_source=anchor_refresh
+
+run 84: start=01:40:30.000 frame=361800  end=01:44:59.983 frame=377999
+  toast1: timestamp=01:44:13.783 frame=375227  timer=03:32.348  timer_conf=0.6481  toast_conf=0.9776  template=toast1  timer_source=anchor_refresh
+
+run 91: start=01:47:48.000 frame=388080  end=01:54:43.983 frame=413039
+  toast1: timestamp=01:51:52.350 frame=402741  timer=03:51.340  timer_conf=0.6901  toast_conf=0.9777  template=toast1  timer_source=anchor_refresh
+
+run 99: start=02:00:50.000 frame=435000  end=02:05:45.983 frame=452759
+  toast1: timestamp=02:03:56.683 frame=446201  timer=03:01.093  timer_conf=0.6435  toast_conf=0.9780  template=toast1  timer_source=anchor_refresh
+
+run 111: start=02:15:40.000 frame=488400  end=02:25:29.983 frame=523799
+  toast1: timestamp=02:20:04.617 frame=504277  timer=04:31.650  timer_conf=0.6986  toast_conf=0.9774  template=toast1  timer_source=anchor_refresh
+  toast2: timestamp=02:21:00.100 frame=507606  timer=05:21.881  timer_conf=0.7273  toast_conf=0.9840  template=toast2  timer_source=anchor_refresh
+
+run 112: start=02:25:30.000 frame=523800  end=02:31:09.983 frame=544199
+  toast1: timestamp=02:28:39.933 frame=535196  timer=03:00.442  timer_conf=0.6987  toast_conf=0.9773  template=toast1  timer_source=anchor_refresh
+
+run 114: start=02:31:30.000 frame=545400  end=02:35:37.983 frame=560279
+  toast1: timestamp=02:34:11.250 frame=555075  timer=02:34.598  timer_conf=0.6060  toast_conf=0.9788  template=toast1  timer_source=anchor_refresh
+
+run 127: start=02:42:00.000 frame=583200  end=02:44:53.983 frame=593639
+  toast1: timestamp=02:44:20.167 frame=591610  timer=02:24.774  timer_conf=0.8472  toast_conf=0.9760  template=toast1  timer_source=anchor_refresh
+
+run 152: start=03:00:12.000 frame=648720  end=03:03:13.983 frame=659639
+  toast1: timestamp=03:02:35.467 frame=657328  timer=02:15.201  timer_conf=0.7304  toast_conf=0.9780  template=toast1  timer_source=anchor_refresh
+
+run 156: start=03:05:20.000 frame=667200  end=03:10:39.983 frame=686399
+  toast1: timestamp=03:07:41.950 frame=675717  timer=02:26.752  timer_conf=0.7195  toast_conf=0.9778  template=toast1  timer_source=anchor_refresh
+
+run 158: start=03:11:02.000 frame=687720  end=03:21:17.983 frame=724679
+  toast1: timestamp=03:15:32.250 frame=703935  timer=03:57.378  timer_conf=0.6880  toast_conf=0.9774  template=toast1  timer_source=anchor_refresh
+  toast2: timestamp=03:17:39.217 frame=711553  timer=05:47.897  timer_conf=0.7008  toast_conf=0.9854  template=toast2  timer_source=anchor_refresh
+
+run 165: start=03:24:58.000 frame=737880  end=03:30:09.983 frame=756599
+  toast1: timestamp=03:28:41.900 frame=751314  timer=03:34.165  timer_conf=0.6708  toast_conf=0.9777  template=toast1  timer_source=anchor_refresh
+
+run 187: start=03:48:08.000 frame=821280  end=03:58:49.983 frame=859799
+  toast1: timestamp=03:50:31.300 frame=829878  timer=02:21.348  timer_conf=0.7309  toast_conf=0.9767  template=toast1  timer_source=anchor_refresh
+  toast2: timestamp=03:52:13.783 frame=836027  timer=03:52.637  timer_conf=0.6302  toast_conf=0.9785  template=toast2  timer_source=anchor_refresh
+  toast3: timestamp=03:57:33.583 frame=855215  timer=09:00.843  timer_conf=0.6492  toast_conf=0.9918  template=toast3  timer_source=anchor_refresh
+
+run 224: start=04:29:32.000 frame=970320  end=04:54:53.983 frame=1061639
+  toast1: timestamp=04:32:26.667 frame=980800  timer=02:56.544  timer_conf=0.6454  toast_conf=0.9765  template=toast1  timer_source=anchor_refresh
+
+run 225: start=04:54:54.000 frame=1061640  end=05:00:11.983 frame=1080719
+  toast1: timestamp=04:59:18.400 frame=1077504  timer=03:48.346  timer_conf=0.6984  toast_conf=0.9769  template=toast1  timer_source=anchor_refresh
+
+run 238: start=05:15:36.000 frame=1136160  end=05:19:43.983 frame=1151039
+  toast1: timestamp=05:19:04.533 frame=1148672  timer=03:19.504  timer_conf=0.7059  toast_conf=0.9771  template=toast1  timer_source=anchor_refresh
+
+run 245: start=05:27:48.000 frame=1180080  end=05:31:35.983 frame=1193759
+  toast1: timestamp=05:30:51.983 frame=1191119  timer=03:03.063  timer_conf=0.5858  toast_conf=0.9757  template=toast1  timer_source=anchor_refresh
+
+run 246: start=05:31:36.000 frame=1193760  end=05:39:03.983 frame=1220639
+  toast1: timestamp=05:35:52.917 frame=1209175  timer=04:09.243  timer_conf=0.6657  toast_conf=0.9677  template=toast1  timer_source=anchor_refresh
+
+run 266: start=05:49:00.000 frame=1256400  end=05:55:25.983 frame=1279559
+  toast1: timestamp=05:53:07.683 frame=1271261  timer=04:12.450  timer_conf=0.7543  toast_conf=0.9765  template=toast1  timer_source=anchor_refresh
+
+run 267: start=05:55:26.000 frame=1279560  end=05:59:51.983 frame=1295519
+  toast1: timestamp=05:59:27.017 frame=1294021  timer=03:47.249  timer_conf=0.7570  toast_conf=0.9753  template=toast1  timer_source=anchor_refresh
+
+run 291: start=06:22:32.000 frame=1377120  end=06:28:01.983 frame=1396919
+  toast1: timestamp=06:27:21.050 frame=1394463  timer=04:48.141  timer_conf=0.8545  toast_conf=0.9779  template=toast1  timer_source=anchor_refresh
+
+run 292: start=06:28:02.000 frame=1396920  end=06:37:09.983 frame=1429799
+  toast1: timestamp=06:33:02.783 frame=1414967  timer=04:48.847  timer_conf=0.7900  toast_conf=0.9773  template=toast1  timer_source=anchor_refresh
+  toast2: timestamp=06:33:56.200 frame=1418172  timer=05:25.741  timer_conf=0.7265  toast_conf=0.9762  template=toast2  timer_source=anchor_refresh
+
+run 294: start=06:39:04.000 frame=1436640  end=06:47:47.983 frame=1468079
+  toast1: timestamp=06:42:53.667 frame=1450420  timer=03:48.438  timer_conf=0.6596  toast_conf=0.9775  template=toast1  timer_source=anchor_refresh
+  toast2: timestamp=06:44:11.550 frame=1455093  timer=04:53.767  timer_conf=0.7004  toast_conf=0.9767  template=toast2  timer_source=anchor_refresh
+
+run 299: start=06:54:34.000 frame=1492440  end=07:06:51.983 frame=1536719
+  toast1: timestamp=06:58:38.800 frame=1507128  timer=04:06.400  timer_conf=0.6971  toast_conf=0.9751  template=toast1  timer_source=anchor_refresh
+  toast2: timestamp=07:01:10.967 frame=1516258  timer=06:30.812  timer_conf=0.6391  toast_conf=0.9787  template=toast2  timer_source=anchor_refresh
+
+run 302: start=07:08:00.000 frame=1540800  end=07:11:33.983 frame=1553639
+  toast1: timestamp=07:10:59.300 frame=1551558  timer=02:52.597  timer_conf=0.6521  toast_conf=0.9773  template=toast1  timer_source=anchor_refresh
+
+run 304: start=07:15:30.000 frame=1567800  end=07:20:39.983 frame=1586399
+  toast1: timestamp=07:19:56.733 frame=1583804  timer=04:07.509  timer_conf=0.6858  toast_conf=0.9768  template=toast1  timer_source=anchor_refresh
+
+run 313: start=07:27:56.000 frame=1612560  end=07:33:01.983 frame=1630919
+  toast1: timestamp=07:31:14.800 frame=1624488  timer=03:17.295  timer_conf=0.6917  toast_conf=0.9747  template=toast1  timer_source=anchor_refresh
+
+run 316: start=07:34:04.000 frame=1634640  end=07:40:21.983 frame=1657319
+  toast1: timestamp=07:39:21.700 frame=1653702  timer=04:50.962  timer_conf=0.6657  toast_conf=0.9783  template=toast1  timer_source=anchor_refresh
+
+run 318: start=07:40:50.000 frame=1659000  end=07:51:23.983 frame=1697039
+  toast1: timestamp=07:44:21.433 frame=1671686  timer=03:04.299  timer_conf=0.6621  toast_conf=0.9776  template=toast1  timer_source=anchor_refresh
+
+run 320: start=07:52:04.000 frame=1699440  end=07:58:07.983 frame=1721279
+  toast1: timestamp=07:56:02.867 frame=1713772  timer=04:40.498  timer_conf=0.7117  toast_conf=0.9778  template=toast1  timer_source=anchor_refresh
+
+run 322: start=07:59:16.000 frame=1725360  end=08:03:09.983 frame=1739399
+  toast1: timestamp=08:02:29.717 frame=1736983  timer=03:14.791  timer_conf=0.8024  toast_conf=0.9745  template=toast1  timer_source=anchor_refresh
+
+run 324: start=08:08:10.000 frame=1757400  end=08:14:29.983 frame=1780199
+  toast1: timestamp=08:11:34.567 frame=1769674  timer=03:21.920  timer_conf=0.6856  toast_conf=0.9809  template=toast1  timer_source=anchor_refresh
+
+run 327: start=08:18:32.000 frame=1794720  end=08:23:45.983 frame=1813559
+  toast1: timestamp=08:21:28.150 frame=1805289  timer=02:44.546  timer_conf=0.7619  toast_conf=0.9753  template=toast1  timer_source=anchor_refresh
+
+run 331: start=08:26:06.000 frame=1821960  end=08:33:25.983 frame=1848359
+  toast1: timestamp=08:29:18.033 frame=1833482  timer=03:11.742  timer_conf=0.8165  toast_conf=0.9777  template=toast1  timer_source=anchor_refresh
+
+run 335: start=08:35:52.000 frame=1857120  end=08:42:45.983 frame=1881959
+  toast1: timestamp=08:41:01.400 frame=1875684  timer=05:08.040  timer_conf=0.6332  toast_conf=0.9772  template=toast1  timer_source=anchor_refresh
+  toast2: timestamp=08:41:53.267 frame=1878796  timer=05:43.876  timer_conf=0.6842  toast_conf=0.9749  template=toast2  timer_source=anchor_refresh
+
+run 338: start=08:43:32.000 frame=1884720  end=08:50:07.983 frame=1908479
+  toast1: timestamp=08:46:37.650 frame=1895859  timer=03:04.415  timer_conf=0.7346  toast_conf=0.9771  template=toast1  timer_source=anchor_refresh
+
+run 342: start=08:51:48.000 frame=1914480  end=09:01:07.983 frame=1948079
+  toast1: timestamp=08:55:09.733 frame=1926584  timer=03:12.688  timer_conf=0.6661  toast_conf=0.9775  template=toast1  timer_source=anchor_refresh
+
+run 353: start=09:10:02.000 frame=1980120  end=09:15:17.983 frame=1999079
+  toast1: timestamp=09:13:50.867 frame=1993852  timer=03:37.156  timer_conf=0.7343  toast_conf=0.9763  template=toast1  timer_source=anchor_refresh
+
+run 356: start=09:16:10.000 frame=2002200  end=09:28:25.983 frame=2046359
+  toast1: timestamp=09:19:33.917 frame=2014435  timer=03:15.592  timer_conf=0.6204  toast_conf=0.9785  template=toast1  timer_source=anchor_refresh
+  toast2: timestamp=09:23:01.733 frame=2026904  timer=06:15.858  timer_conf=0.6434  toast_conf=0.9820  template=toast2  timer_source=anchor_refresh
+
+run 361: start=09:30:24.000 frame=2053440  end=09:36:07.983 frame=2074079
+  toast1: timestamp=09:33:02.767 frame=2062966  timer=02:39.991  timer_conf=0.6648  toast_conf=0.9771  template=toast1  timer_source=anchor_refresh
+
+run 362: start=09:36:08.000 frame=2074080  end=09:42:43.983 frame=2097839
+  toast1: timestamp=09:40:59.600 frame=2091576  timer=04:42.596  timer_conf=0.6813  toast_conf=0.9899  template=toast1  timer_source=anchor_refresh
+
+run 363: start=09:42:44.000 frame=2097840  end=09:48:31.983 frame=2118719
+  toast1: timestamp=09:46:19.267 frame=2110756  timer=03:35.202  timer_conf=0.6015  toast_conf=0.9773  template=toast1  timer_source=anchor_refresh
+
+run 366: start=09:52:42.000 frame=2133720  end=09:59:45.983 frame=2159159
+  toast1: timestamp=09:56:35.100 frame=2147706  timer=03:54.036  timer_conf=0.6789  toast_conf=0.9777  template=toast1  timer_source=anchor_refresh
+
+run 367: start=09:59:46.000 frame=2159160  end=10:12:06.233 frame=2203574
+  toast1: timestamp=10:03:49.850 frame=2173791  timer=03:51.097  timer_conf=0.7145  toast_conf=0.9773  template=toast1  timer_source=anchor_refresh
+  toast2: timestamp=10:04:20.233 frame=2175614  timer=04:09.286  timer_conf=0.6781  toast_conf=0.9848  template=toast2  timer_source=anchor_refresh
+
